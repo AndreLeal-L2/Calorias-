@@ -1,0 +1,51 @@
+"use client";
+
+import type { MealDayGroup } from "@/lib/metrics";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis
+} from "recharts";
+
+export function StatsChart({
+  groups,
+  target
+}: {
+  groups: MealDayGroup[];
+  target: number;
+}) {
+  const data = [...groups]
+    .slice(0, 14)
+    .reverse()
+    .map((group) => ({
+      date: group.date.slice(5),
+      calories: group.totalCalories,
+      target
+    }));
+
+  return (
+    <div className="h-72 w-full">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart data={data} margin={{ left: -18, right: 8, top: 8, bottom: 0 }}>
+          <CartesianGrid strokeDasharray="3 3" stroke="#e5ded2" vertical={false} />
+          <XAxis dataKey="date" tickLine={false} axisLine={false} fontSize={12} />
+          <YAxis tickLine={false} axisLine={false} fontSize={12} />
+          <Tooltip
+            cursor={{ fill: "rgba(15, 118, 110, 0.08)" }}
+            contentStyle={{
+              borderRadius: 16,
+              border: "1px solid #e5ded2",
+              boxShadow: "0 18px 45px rgba(15, 23, 42, 0.12)"
+            }}
+          />
+          <Bar dataKey="calories" name="Calorias" fill="#0f766e" radius={[8, 8, 0, 0]} />
+          <Bar dataKey="target" name="Meta" fill="#eab308" radius={[8, 8, 0, 0]} />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
