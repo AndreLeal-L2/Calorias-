@@ -55,11 +55,18 @@ Requer Node 20+.
 
 ```bash
 npm install
-npm run db:migrate
 npm run dev
 ```
 
 Abre `http://localhost:3000`.
+
+Para testar sem Postgres local, podes usar apenas:
+
+```bash
+APP_SECRET=dummy npm run dev
+```
+
+Nesse modo, a app guarda dados em `.data/calorias.json`. Em producao, usa sempre `DATABASE_URL` com Postgres e corre `npm run db:migrate`.
 
 ## Verificacao
 
