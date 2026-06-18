@@ -46,7 +46,7 @@ export default async function HomePage() {
     <AppShell>
       <div id="hoje" className="mx-auto max-w-6xl px-4 py-4 sm:px-6 sm:py-8">
         <Reveal>
-          <section className="rounded-[1.75rem] bg-zinc-950 p-5 text-white sm:p-7">
+          <section className="rounded-[1.75rem] border border-white/10 bg-[#111411] p-5 text-white shadow-2xl shadow-black/30 sm:p-7">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-sm text-zinc-400">{formatLongDate(now)}</p>
@@ -56,7 +56,7 @@ export default async function HomePage() {
                 </h1>
                 <p className="mt-1 text-sm text-zinc-400">restantes hoje</p>
               </div>
-              <div className="rounded-full border border-white/10 px-3 py-1.5 text-sm text-zinc-300">
+              <div className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1.5 text-sm text-emerald-200">
                 {dailySummary.percentUsed}%
               </div>
             </div>
@@ -67,7 +67,7 @@ export default async function HomePage() {
               </div>
               <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/10">
                 <div
-                  className="h-full rounded-full bg-[#6ee7b7]"
+                  className="h-full rounded-full bg-emerald-300"
                   style={{ width: `${Math.min(dailySummary.percentUsed, 100)}%` }}
                 />
               </div>
@@ -144,11 +144,11 @@ function Panel({
   children: React.ReactNode;
 }) {
   return (
-    <section className="rounded-2xl border border-zinc-200 bg-white p-4 sm:p-5">
+    <section className="rounded-2xl border border-white/10 bg-[#101311] p-4 sm:p-5">
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-base font-semibold text-zinc-950">{title}</h2>
+        <h2 className="text-base font-semibold text-zinc-50">{title}</h2>
         {actionLabel ? (
-          <span className="rounded-full bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-500">
+          <span className="rounded-full bg-white/[0.06] px-2.5 py-1 text-xs font-medium text-zinc-400">
             {actionLabel}
           </span>
         ) : null}

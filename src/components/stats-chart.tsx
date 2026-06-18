@@ -29,7 +29,7 @@ export function StatsChart({
 
   if (data.length === 0) {
     return (
-      <div className="flex h-40 items-center justify-center rounded-xl border border-dashed border-zinc-300 bg-zinc-50 px-4 text-center text-sm text-zinc-500 sm:h-56">
+      <div className="flex h-40 items-center justify-center rounded-xl border border-dashed border-white/15 bg-white/[0.03] px-4 text-center text-sm text-zinc-500 sm:h-56">
         Regista uma refeicao para veres a tendencia.
       </div>
     );
@@ -39,19 +39,21 @@ export function StatsChart({
     <div className="h-60 w-full sm:h-72">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} margin={{ left: -18, right: 8, top: 8, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#e2e5df" vertical={false} />
-          <XAxis dataKey="date" tickLine={false} axisLine={false} fontSize={12} />
-          <YAxis tickLine={false} axisLine={false} fontSize={12} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#252b27" vertical={false} />
+          <XAxis dataKey="date" tickLine={false} axisLine={false} fontSize={12} stroke="#9ca3af" />
+          <YAxis tickLine={false} axisLine={false} fontSize={12} stroke="#9ca3af" />
           <Tooltip
             cursor={{ fill: "rgba(15, 118, 110, 0.08)" }}
             contentStyle={{
               borderRadius: 16,
-              border: "1px solid #e2e5df",
-              boxShadow: "0 14px 30px rgba(15, 23, 42, 0.10)"
+              background: "#111411",
+              color: "#f4f7f4",
+              border: "1px solid #252b27",
+              boxShadow: "0 14px 30px rgba(0, 0, 0, 0.35)"
             }}
           />
-          <Bar dataKey="calories" name="Calorias" fill="#18181b" radius={[6, 6, 0, 0]} />
-          <Bar dataKey="target" name="Meta" fill="#9ca3af" radius={[6, 6, 0, 0]} />
+          <Bar dataKey="calories" name="Calorias" fill="#57d39b" radius={[6, 6, 0, 0]} />
+          <Bar dataKey="target" name="Meta" fill="#3f4641" radius={[6, 6, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>
     </div>

@@ -12,16 +12,16 @@ export function MealForm({ defaultDateTime }: { defaultDateTime: string }) {
     <form action={formAction} className="space-y-3">
       <div className="grid grid-cols-[1fr_7.25rem] gap-2 sm:grid-cols-[1.4fr_0.8fr]">
         <label>
-          <span className="text-xs font-medium text-zinc-600">Refeicao</span>
+          <span className="text-xs font-medium text-zinc-400">Refeicao</span>
           <input
             name="name"
             required
             placeholder="O que comeste?"
-            className="focus-ring mt-1.5 w-full rounded-xl border border-zinc-200 bg-white px-3 py-3 text-[16px]"
+            className="focus-ring mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 py-3 text-[16px] text-zinc-50 placeholder:text-zinc-600"
           />
         </label>
         <label>
-          <span className="text-xs font-medium text-zinc-600">Kcal</span>
+          <span className="text-xs font-medium text-zinc-400">Kcal</span>
           <input
             name="calories"
             required
@@ -30,28 +30,28 @@ export function MealForm({ defaultDateTime }: { defaultDateTime: string }) {
             min="1"
             max="6000"
             placeholder="750"
-            className="focus-ring mt-1.5 w-full rounded-xl border border-zinc-200 bg-white px-3 py-3 text-[16px]"
+            className="focus-ring mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 py-3 text-[16px] text-zinc-50 placeholder:text-zinc-600"
           />
         </label>
       </div>
       <div className="grid gap-2 sm:grid-cols-[1fr_1fr]">
       <label>
-        <span className="text-xs font-medium text-zinc-600">Hora</span>
+        <span className="text-xs font-medium text-zinc-400">Hora</span>
         <input
           name="eatenAt"
           required
           type="datetime-local"
           defaultValue={defaultDateTime}
-          className="focus-ring mt-1.5 w-full rounded-xl border border-zinc-200 bg-white px-3 py-3 text-[16px]"
+          className="focus-ring mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.04] px-3 py-3 text-[16px] text-zinc-50"
         />
       </label>
       <label>
-        <span className="text-xs font-medium text-zinc-600">Notas</span>
+        <span className="text-xs font-medium text-zinc-400">Notas</span>
         <textarea
           name="notes"
           rows={1}
           placeholder="Opcional"
-          className="focus-ring mt-1.5 w-full resize-none rounded-xl border border-zinc-200 bg-white px-3 py-3 text-[16px]"
+          className="focus-ring mt-1.5 w-full resize-none rounded-xl border border-white/10 bg-white/[0.04] px-3 py-3 text-[16px] text-zinc-50 placeholder:text-zinc-600"
         />
       </label>
       </div>
@@ -66,7 +66,7 @@ function SubmitButton({ pending, idle }: { pending: boolean; idle: string }) {
     <button
       type="submit"
       disabled={pending}
-      className="focus-ring w-full rounded-xl bg-zinc-950 px-4 py-3.5 text-sm font-semibold text-white transition hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-60"
+      className="focus-ring w-full rounded-xl bg-emerald-400 px-4 py-3.5 text-sm font-semibold text-zinc-950 transition hover:bg-emerald-300 disabled:cursor-not-allowed disabled:opacity-60"
     >
       {pending ? "A guardar..." : idle}
     </button>
@@ -75,11 +75,11 @@ function SubmitButton({ pending, idle }: { pending: boolean; idle: string }) {
 
 function FormState({ state }: { state: ActionState }) {
   if (state.error) {
-    return <p className="text-sm text-red-700">{state.error}</p>;
+    return <p className="text-sm text-rose-300">{state.error}</p>;
   }
 
   if (state.ok) {
-    return <p className="text-sm text-teal-700">Registo guardado.</p>;
+    return <p className="text-sm text-emerald-300">Registo guardado.</p>;
   }
 
   return null;

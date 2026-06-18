@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f6f7f5;
-  --foreground: #151515;
-  --panel: #ffffff;
-  --muted: #6f746d;
-  --line: #e2e5df;
-  --accent: #16745f;
-  --accent-strong: #0f5f4d;
-  --energy: #d8a21b;
-  --danger: #dc2626;
+  --background: #070807;
+  --foreground: #f4f7f4;
+  --panel: #101311;
+  --muted: #9aa39a;
+  --line: #242a25;
+  --accent: #57d39b;
+  --accent-strong: #2fb678;
+  --energy: #e2b84d;
+  --danger: #fb7185;
 }
 
 * {
@@ -23,7 +23,9 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
-  background: var(--background);
+  background:
+    radial-gradient(circle at top, rgba(87, 211, 155, 0.08), transparent 22rem),
+    var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
 }
@@ -42,4 +44,8 @@ textarea {
 
 .focus-ring:focus-visible {
   outline-color: var(--accent);
+}
+
+::selection {
+  background: rgba(87, 211, 155, 0.25);
 }

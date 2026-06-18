@@ -36,17 +36,17 @@ function ProgressCard({
   percent: number;
 }) {
   return (
-    <article className="rounded-2xl border border-zinc-200 bg-white p-4">
+    <article className="rounded-2xl border border-white/10 bg-[#101311] p-4">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2 text-sm font-medium text-zinc-700">
+        <div className="flex items-center gap-2 text-sm font-medium text-zinc-300">
           {icon}
           {label}
         </div>
-        <span className="text-sm font-semibold text-zinc-950">{value}</span>
+        <span className="text-sm font-semibold text-zinc-50">{value}</span>
       </div>
-      <div className="mt-3 h-2 overflow-hidden rounded-full bg-zinc-100">
+      <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/[0.07]">
         <div
-          className="h-full rounded-full bg-zinc-950"
+          className="h-full rounded-full bg-emerald-300"
           style={{ width: `${Math.min(percent, 100)}%` }}
         />
       </div>

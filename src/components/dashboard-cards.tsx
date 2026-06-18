@@ -47,15 +47,15 @@ export function DashboardCards({
       {cards.map((card) => (
         <article
           key={card.label}
-          className="rounded-2xl border border-zinc-200 bg-white p-4"
+          className="rounded-2xl border border-white/10 bg-[#101311] p-4"
         >
           <div className="flex items-center justify-between gap-3">
             <p className="text-xs font-medium text-zinc-500">{card.label}</p>
-            <div className="rounded-full bg-zinc-100 p-1.5 text-zinc-600">
+            <div className="rounded-full bg-white/[0.06] p-1.5 text-zinc-400">
               <card.icon className="h-4 w-4" aria-hidden="true" />
             </div>
           </div>
-          <p className="mt-3 flex items-end gap-1 text-2xl font-semibold tracking-tight text-zinc-950 sm:text-3xl">
+          <p className="mt-3 flex items-end gap-1 text-2xl font-semibold tracking-tight text-zinc-50 sm:text-3xl">
             {card.value}
             <span className="pb-0.5 text-xs font-medium text-zinc-500">
               {card.suffix}
