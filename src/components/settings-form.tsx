@@ -8,10 +8,10 @@ export function SettingsForm({ settings }: { settings: SettingsRecord }) {
   const [state, formAction, pending] = useActionState(updateSettingsAction, {});
 
   return (
-    <form action={formAction} className="space-y-4">
-      <div className="grid gap-3 sm:grid-cols-3">
+    <form action={formAction} className="space-y-3">
+      <div className="grid gap-2 sm:grid-cols-3">
         <label>
-          <span className="text-sm font-medium text-zinc-800">Kcal/dia</span>
+          <span className="text-xs font-medium text-zinc-600">Kcal/dia</span>
           <input
             name="dailyCalorieTarget"
             type="number"
@@ -19,11 +19,11 @@ export function SettingsForm({ settings }: { settings: SettingsRecord }) {
             max="5000"
             required
             defaultValue={settings.dailyCalorieTarget}
-            className="focus-ring mt-2 w-full rounded-2xl border border-zinc-200 bg-white px-4 py-3"
+            className="focus-ring mt-1.5 w-full rounded-xl border border-zinc-200 bg-white px-3 py-3 text-[16px]"
           />
         </label>
         <label>
-          <span className="text-sm font-medium text-zinc-800">Ginasio/semana</span>
+          <span className="text-xs font-medium text-zinc-600">Ginasio/semana</span>
           <input
             name="weeklyGymTarget"
             type="number"
@@ -31,11 +31,11 @@ export function SettingsForm({ settings }: { settings: SettingsRecord }) {
             max="7"
             required
             defaultValue={settings.weeklyGymTarget}
-            className="focus-ring mt-2 w-full rounded-2xl border border-zinc-200 bg-white px-4 py-3"
+            className="focus-ring mt-1.5 w-full rounded-xl border border-zinc-200 bg-white px-3 py-3 text-[16px]"
           />
         </label>
         <label>
-          <span className="text-sm font-medium text-zinc-800">Cardio/dia</span>
+          <span className="text-xs font-medium text-zinc-600">Cardio/dia</span>
           <input
             name="dailyCardioTargetMinutes"
             type="number"
@@ -43,14 +43,14 @@ export function SettingsForm({ settings }: { settings: SettingsRecord }) {
             max="240"
             required
             defaultValue={settings.dailyCardioTargetMinutes}
-            className="focus-ring mt-2 w-full rounded-2xl border border-zinc-200 bg-white px-4 py-3"
+            className="focus-ring mt-1.5 w-full rounded-xl border border-zinc-200 bg-white px-3 py-3 text-[16px]"
           />
         </label>
       </div>
       <button
         type="submit"
         disabled={pending}
-        className="focus-ring w-full rounded-2xl bg-teal-700 px-4 py-3 font-semibold text-white transition hover:bg-teal-800 disabled:opacity-60"
+        className="focus-ring w-full rounded-xl bg-zinc-950 px-4 py-3.5 text-sm font-semibold text-white transition hover:bg-zinc-800 disabled:opacity-60"
       >
         {pending ? "A guardar..." : "Atualizar metas"}
       </button>

@@ -1,6 +1,7 @@
 import {
   BoltIcon,
   CalendarDaysIcon,
+  FireIcon,
   ScaleIcon
 } from "@heroicons/react/24/outline";
 import type { DailySummary } from "@/lib/metrics";
@@ -16,54 +17,50 @@ export function DashboardCards({
 }) {
   const cards = [
     {
-      label: "Consumidas hoje",
+      label: "Consumidas",
       value: `${summary.consumed}`,
       suffix: "kcal",
-      icon: BoltIcon,
-      tone: "bg-teal-700 text-white"
+      icon: FireIcon
     },
     {
       label: "Restantes",
       value: `${summary.remaining}`,
       suffix: "kcal",
-      icon: CalendarDaysIcon,
-      tone: "bg-zinc-950 text-white"
+      icon: BoltIcon
     },
     {
       label: "Media 7 dias",
       value: `${sevenDayAverage}`,
       suffix: "kcal",
-      icon: CalendarDaysIcon,
-      tone: "bg-amber-400 text-zinc-950"
+      icon: CalendarDaysIcon
     },
     {
-      label: "Ultimo peso",
+      label: "Peso",
       value: latestWeight ? latestWeight.toFixed(1) : "--",
       suffix: latestWeight ? "kg" : "",
-      icon: ScaleIcon,
-      tone: "bg-white text-zinc-950"
+      icon: ScaleIcon
     }
   ];
 
   return (
-    <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+    <section className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
       {cards.map((card) => (
         <article
           key={card.label}
-          className={`${card.tone} rounded-[1.5rem] border border-white/70 p-5 shadow-xl shadow-zinc-950/5`}
+          className="rounded-2xl border border-zinc-200 bg-white p-4"
         >
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <p className="text-sm opacity-75">{card.label}</p>
-              <p className="mt-3 flex items-end gap-2 text-4xl font-semibold">
-                {card.value}
-                <span className="pb-1 text-sm font-medium opacity-70">
-                  {card.suffix}
-                </span>
-              </p>
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-xs font-medium text-zinc-500">{card.label}</p>
+            <div className="rounded-full bg-zinc-100 p-1.5 text-zinc-600">
+              <card.icon className="h-4 w-4" aria-hidden="true" />
             </div>
-            <card.icon className="h-6 w-6 opacity-75" aria-hidden="true" />
           </div>
+          <p className="mt-3 flex items-end gap-1 text-2xl font-semibold tracking-tight text-zinc-950 sm:text-3xl">
+            {card.value}
+            <span className="pb-0.5 text-xs font-medium text-zinc-500">
+              {card.suffix}
+            </span>
+          </p>
         </article>
       ))}
     </section>

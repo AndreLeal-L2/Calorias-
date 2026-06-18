@@ -44,35 +44,30 @@ export default async function HomePage() {
 
   return (
     <AppShell>
-      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-10">
+      <div id="hoje" className="mx-auto max-w-6xl px-4 py-4 sm:px-6 sm:py-8">
         <Reveal>
-          <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-            <div>
-              <p className="text-sm font-semibold uppercase text-teal-700">
-                Hoje, {formatLongDate(now)}
-              </p>
-              <h1 className="mt-3 max-w-3xl text-4xl font-semibold text-zinc-950 sm:text-6xl">
-                Controla calorias, treino e progresso.
-              </h1>
-              <p className="mt-5 max-w-2xl text-base leading-7 text-zinc-700">
-                Meta atual: {data.settings.dailyCalorieTarget} kcal por dia,
-                ginasio {data.settings.weeklyGymTarget}x por semana e cardio
-                em casa como habito diario ajustavel.
-              </p>
-            </div>
-            <div className="rounded-[1.5rem] border border-white/70 bg-white/85 p-5 shadow-xl shadow-zinc-950/5">
-              <p className="text-sm font-medium text-zinc-600">Uso da meta diaria</p>
-              <div className="mt-4 flex items-end justify-between gap-4">
-                <p className="text-5xl font-semibold text-zinc-950">
-                  {dailySummary.percentUsed}%
-                </p>
-                <p className="pb-2 text-sm text-zinc-600">
-                  {dailySummary.consumed}/{dailySummary.target} kcal
-                </p>
+          <section className="rounded-[1.75rem] bg-zinc-950 p-5 text-white sm:p-7">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-sm text-zinc-400">{formatLongDate(now)}</p>
+                <h1 className="mt-3 text-5xl font-semibold tracking-tight sm:text-6xl">
+                  {dailySummary.remaining}
+                  <span className="ml-2 text-base font-medium text-zinc-400">kcal</span>
+                </h1>
+                <p className="mt-1 text-sm text-zinc-400">restantes hoje</p>
               </div>
-              <div className="mt-5 h-3 overflow-hidden rounded-full bg-zinc-100">
+              <div className="rounded-full border border-white/10 px-3 py-1.5 text-sm text-zinc-300">
+                {dailySummary.percentUsed}%
+              </div>
+            </div>
+            <div className="mt-6">
+              <div className="flex justify-between text-xs text-zinc-400">
+                <span>{dailySummary.consumed} consumidas</span>
+                <span>{dailySummary.target} meta</span>
+              </div>
+              <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/10">
                 <div
-                  className="h-full rounded-full bg-teal-700"
+                  className="h-full rounded-full bg-[#6ee7b7]"
                   style={{ width: `${Math.min(dailySummary.percentUsed, 100)}%` }}
                 />
               </div>
@@ -80,7 +75,7 @@ export default async function HomePage() {
           </section>
         </Reveal>
 
-        <div className="mt-8 space-y-8">
+        <div className="mt-4 space-y-4 sm:mt-6 sm:space-y-6">
           <Reveal delay={0.05}>
             <DashboardCards
               summary={dailySummary}
@@ -89,44 +84,46 @@ export default async function HomePage() {
             />
           </Reveal>
 
-          <Reveal delay={0.1}>
-            <TrainingSummary summary={trainingSummary} />
-          </Reveal>
-
-          <section className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+          <section id="refeicao" className="grid gap-4 lg:grid-cols-[0.85fr_1.15fr]">
             <Reveal delay={0.12}>
-              <Panel title="Adicionar refeicao" description="Registo rapido para usar no telemovel durante o dia.">
+              <Panel title="Refeicao" actionLabel="rapido">
                 <MealForm defaultDateTime={defaultDateTime} />
               </Panel>
             </Reveal>
             <Reveal delay={0.16}>
-              <Panel title="Historico recente" description="Ultimos dias agrupados por consumo total.">
+              <Panel title="Historico">
                 <HistoryList groups={groups} />
               </Panel>
             </Reveal>
           </section>
 
-          <section id="estatisticas" className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+          <section id="treino">
             <Reveal delay={0.1}>
-              <Panel title="Tendencia de calorias" description="Compara consumo real com a meta configurada.">
+              <TrainingSummary summary={trainingSummary} />
+            </Reveal>
+          </section>
+
+          <section id="estatisticas" className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+            <Reveal delay={0.1}>
+              <Panel title="Calorias">
                 <StatsChart groups={groups} target={data.settings.dailyCalorieTarget} />
               </Panel>
             </Reveal>
             <Reveal delay={0.14}>
-              <Panel title="Treino" description="Regista ginasio, bicicleta ou esteira.">
+              <Panel title="Treino">
                 <TrainingForm defaultDateTime={defaultDateTime} />
               </Panel>
             </Reveal>
           </section>
 
-          <section className="grid gap-6 lg:grid-cols-2">
+          <section className="grid gap-4 lg:grid-cols-2">
             <Reveal delay={0.1}>
-              <Panel title="Peso corporal" description="Acompanha a evolucao sem depender da memoria.">
+              <Panel title="Peso">
                 <WeightForm defaultDate={today} />
               </Panel>
             </Reveal>
             <Reveal delay={0.14}>
-              <Panel title="Metas pessoais" description="Ajusta agressividade sem alterar codigo.">
+              <Panel title="Metas">
                 <SettingsForm settings={data.settings} />
               </Panel>
             </Reveal>
@@ -139,18 +136,22 @@ export default async function HomePage() {
 
 function Panel({
   title,
-  description,
+  actionLabel,
   children
 }: {
   title: string;
-  description: string;
+  actionLabel?: string;
   children: React.ReactNode;
 }) {
   return (
-    <section className="rounded-[1.75rem] border border-white/70 bg-white/80 p-5 shadow-xl shadow-zinc-950/5 backdrop-blur sm:p-6">
-      <div className="mb-5">
-        <h2 className="text-xl font-semibold text-zinc-950">{title}</h2>
-        <p className="mt-1 text-sm leading-6 text-zinc-600">{description}</p>
+    <section className="rounded-2xl border border-zinc-200 bg-white p-4 sm:p-5">
+      <div className="mb-4 flex items-center justify-between">
+        <h2 className="text-base font-semibold text-zinc-950">{title}</h2>
+        {actionLabel ? (
+          <span className="rounded-full bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-500">
+            {actionLabel}
+          </span>
+        ) : null}
       </div>
       {children}
     </section>

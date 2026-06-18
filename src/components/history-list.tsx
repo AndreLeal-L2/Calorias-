@@ -3,30 +3,30 @@ import type { MealDayGroup } from "@/lib/metrics";
 export function HistoryList({ groups }: { groups: MealDayGroup[] }) {
   if (groups.length === 0) {
     return (
-      <div className="rounded-[1.5rem] border border-dashed border-zinc-300 bg-white/60 p-6 text-sm text-zinc-600">
+      <div className="rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-4 text-sm text-zinc-500">
         Ainda nao tens refeicoes registadas.
       </div>
     );
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       {groups.slice(0, 7).map((group) => (
         <section
           key={group.date}
-          className="rounded-[1.5rem] border border-white/70 bg-white/85 p-5 shadow-xl shadow-zinc-950/5"
+          className="rounded-xl border border-zinc-200 bg-zinc-50 p-4"
         >
           <div className="flex items-center justify-between gap-4">
             <h3 className="font-semibold text-zinc-950">{formatDate(group.date)}</h3>
-            <p className="text-sm font-medium text-teal-700">
+            <p className="text-sm font-semibold text-zinc-950">
               {group.totalCalories} kcal
             </p>
           </div>
-          <div className="mt-4 divide-y divide-zinc-100">
+          <div className="mt-3 divide-y divide-zinc-200/70">
             {group.meals.map((meal) => (
-              <div key={meal.id} className="flex justify-between gap-4 py-3">
+              <div key={meal.id} className="flex justify-between gap-4 py-2.5">
                 <div>
-                  <p className="font-medium text-zinc-900">{meal.name}</p>
+                  <p className="text-sm font-medium text-zinc-900">{meal.name}</p>
                   <p className="text-xs text-zinc-500">{formatTime(meal.eatenAt)}</p>
                 </div>
                 <p className="shrink-0 text-sm font-semibold text-zinc-950">

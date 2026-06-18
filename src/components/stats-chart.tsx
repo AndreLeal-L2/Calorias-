@@ -28,22 +28,22 @@ export function StatsChart({
     }));
 
   return (
-    <div className="h-72 w-full">
+    <div className="h-60 w-full sm:h-72">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} margin={{ left: -18, right: 8, top: 8, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#e5ded2" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#e2e5df" vertical={false} />
           <XAxis dataKey="date" tickLine={false} axisLine={false} fontSize={12} />
           <YAxis tickLine={false} axisLine={false} fontSize={12} />
           <Tooltip
             cursor={{ fill: "rgba(15, 118, 110, 0.08)" }}
             contentStyle={{
               borderRadius: 16,
-              border: "1px solid #e5ded2",
-              boxShadow: "0 18px 45px rgba(15, 23, 42, 0.12)"
+              border: "1px solid #e2e5df",
+              boxShadow: "0 14px 30px rgba(15, 23, 42, 0.10)"
             }}
           />
-          <Bar dataKey="calories" name="Calorias" fill="#0f766e" radius={[8, 8, 0, 0]} />
-          <Bar dataKey="target" name="Meta" fill="#eab308" radius={[8, 8, 0, 0]} />
+          <Bar dataKey="calories" name="Calorias" fill="#18181b" radius={[6, 6, 0, 0]} />
+          <Bar dataKey="target" name="Meta" fill="#9ca3af" radius={[6, 6, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>
     </div>
