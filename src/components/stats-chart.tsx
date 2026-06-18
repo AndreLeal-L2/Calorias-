@@ -27,6 +27,14 @@ export function StatsChart({
       target
     }));
 
+  if (data.length === 0) {
+    return (
+      <div className="flex h-40 items-center justify-center rounded-xl border border-dashed border-zinc-300 bg-zinc-50 px-4 text-center text-sm text-zinc-500 sm:h-56">
+        Regista uma refeicao para veres a tendencia.
+      </div>
+    );
+  }
+
   return (
     <div className="h-60 w-full sm:h-72">
       <ResponsiveContainer width="100%" height="100%">
