@@ -11,6 +11,7 @@ App pessoal para registar refeicoes, calorias, treino, peso corporal e progresso
 - Metas editaveis de calorias, ginasio e cardio.
 - Registo de ginasio, bicicleta, esteira e peso corporal.
 - Persistencia em Postgres via `DATABASE_URL`.
+- Fallback local em `.data/calorias.json` quando nao existe `DATABASE_URL`.
 
 ## Stack
 
@@ -23,20 +24,40 @@ App pessoal para registar refeicoes, calorias, treino, peso corporal e progresso
 - postgres.js
 - Vitest
 
-## Variaveis de ambiente
+## Desenvolvimento
 
-Cria `.env.local` para desenvolvimento:
+Requisitos:
 
-```bash
+- Node.js 20 ou superior.
+- npm.
+
+Crie `.env.local`:
+
+```env
 APP_SECRET=um-codigo-forte-so-teu
 DATABASE_URL=postgres://user:password@host:5432/database?sslmode=require
 ```
 
-Na Vercel, adiciona as mesmas variaveis em **Project Settings > Environment Variables**.
+Instale dependencias e inicie a app:
 
-## Base de dados
+```bash
+npm install
+npm run dev
+```
 
-Usa Neon, Vercel Postgres ou outro Postgres gerido. Depois de configurar `DATABASE_URL`, aplica o schema:
+Abra `http://localhost:3000`.
+
+Para testar sem Postgres local:
+
+```bash
+APP_SECRET=dummy npm run dev
+```
+
+Nesse modo, a app guarda dados em `.data/calorias.json`.
+
+## Base de Dados
+
+Use Neon, Vercel Postgres ou outro Postgres gerido. Depois de configurar `DATABASE_URL`, aplique o schema:
 
 ```bash
 npm run db:migrate
@@ -49,25 +70,6 @@ O schema cria:
 - `body_weights`
 - `settings`
 
-## Desenvolvimento local
-
-Requer Node 20+.
-
-```bash
-npm install
-npm run dev
-```
-
-Abre `http://localhost:3000`.
-
-Para testar sem Postgres local, podes usar apenas:
-
-```bash
-APP_SECRET=dummy npm run dev
-```
-
-Nesse modo, a app guarda dados em `.data/calorias.json`. Em producao, usa sempre `DATABASE_URL` com Postgres e corre `npm run db:migrate`.
-
 ## Verificacao
 
 ```bash
@@ -79,11 +81,11 @@ npm run build
 
 ## Deploy na Vercel
 
-1. Faz push para `AndreLeal-L2/Calorias-.git`.
-2. Importa o repositorio na Vercel.
-3. Configura `APP_SECRET` e `DATABASE_URL`.
-4. Corre `npm run db:migrate` localmente apontando para a base de dados de producao, ou usa uma job/manual command equivalente.
-5. Faz deploy.
+1. Faca push para `AndreLeal-L2/Calorias-.git`.
+2. Importe o repositorio na Vercel.
+3. Configure `APP_SECRET` e `DATABASE_URL`.
+4. Execute `npm run db:migrate` apontando para a base de dados de producao.
+5. Faca deploy.
 
 ## Nota
 
