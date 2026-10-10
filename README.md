@@ -1,17 +1,17 @@
 # Calorias
 
-App pessoal para registar refeicoes, calorias, treino, peso corporal e progresso de perda de peso. Foi pensada para uso no telemovel e deploy na Vercel.
+Personal app for logging meals, calories, training, body weight, and weight-loss progress. It was designed for mobile use and deployment on Vercel.
 
-## Funcionalidades
+## Features
 
-- Login por codigo secreto via `APP_SECRET`.
-- Sessao em cookie HTTP-only.
-- Registo de refeicoes com calorias, hora e notas.
-- Historico diario e grafico de consumo.
-- Metas editaveis de calorias, ginasio e cardio.
-- Registo de ginasio, bicicleta, esteira e peso corporal.
-- Persistencia em Postgres via `DATABASE_URL`.
-- Fallback local em `.data/calorias.json` quando nao existe `DATABASE_URL`.
+- Login by secret code through `APP_SECRET`.
+- HTTP-only cookie session.
+- Meal logging with calories, time, and notes.
+- Daily history and consumption chart.
+- Editable goals for calories, gym, and cardio.
+- Gym, cycling, treadmill, and body-weight logging.
+- Persistence in Postgres through `DATABASE_URL`.
+- Local fallback in `.data/calorias.json` when `DATABASE_URL` is not available.
 
 ## Stack
 
@@ -24,53 +24,53 @@ App pessoal para registar refeicoes, calorias, treino, peso corporal e progresso
 - postgres.js
 - Vitest
 
-## Desenvolvimento
+## Development
 
-Requisitos:
+Requirements:
 
-- Node.js 20 ou superior.
+- Node.js 20 or higher.
 - npm.
 
-Crie `.env.local`:
+Create `.env.local`:
 
 ```env
-APP_SECRET=um-codigo-forte-so-teu
+APP_SECRET=a-strong-code-only-you-know
 DATABASE_URL=postgres://user:password@host:5432/database?sslmode=require
 ```
 
-Instale dependencias e inicie a app:
+Install dependencies and start the app:
 
 ```bash
 npm install
 npm run dev
 ```
 
-Abra `http://localhost:3000`.
+Open `http://localhost:3000`.
 
-Para testar sem Postgres local:
+To test without local Postgres:
 
 ```bash
 APP_SECRET=dummy npm run dev
 ```
 
-Nesse modo, a app guarda dados em `.data/calorias.json`.
+In this mode, the app stores data in `.data/calorias.json`.
 
-## Base de Dados
+## Database
 
-Use Neon, Vercel Postgres ou outro Postgres gerido. Depois de configurar `DATABASE_URL`, aplique o schema:
+Use Neon, Vercel Postgres, or another managed Postgres service. After configuring `DATABASE_URL`, apply the schema:
 
 ```bash
 npm run db:migrate
 ```
 
-O schema cria:
+The schema creates:
 
 - `meals`
 - `training_sessions`
 - `body_weights`
 - `settings`
 
-## Verificacao
+## Verification
 
 ```bash
 npm run lint
@@ -79,14 +79,14 @@ npm test -- --run
 npm run build
 ```
 
-## Deploy na Vercel
+## Deploy on Vercel
 
-1. Faca push para `AndreLeal-L2/Calorias-.git`.
-2. Importe o repositorio na Vercel.
-3. Configure `APP_SECRET` e `DATABASE_URL`.
-4. Execute `npm run db:migrate` apontando para a base de dados de producao.
-5. Faca deploy.
+1. Push to `AndreLeal-L2/Calorias-.git`.
+2. Import the repository into Vercel.
+3. Configure `APP_SECRET` and `DATABASE_URL`.
+4. Run `npm run db:migrate` against the production database.
+5. Deploy.
 
-## Nota
+## Note
 
-As metas caloricas sao configuraveis e servem para acompanhamento pessoal. A app nao substitui aconselhamento medico ou nutricional.
+Calorie goals are configurable and are intended for personal tracking. The app does not replace medical or nutritional advice.
